@@ -1028,7 +1028,7 @@ function filter(fn, arr) {
             </div>
         </div>
     <div class="sl-block" data-block-type="code" style="width: 935px; height: 135px; left: 14px; top: 380px;" data-block-id="337b217d6a8a71415b5d8b42365f9bfe">
-            <div class="sl-block-content fragment current-fragment" style="z-index: 13;" data-fragment-index="0">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0">
                 <pre class="javascript"><code>//forEach does not return a value -&gt; This is not very FP approach
 function filter(fn, arr) {
   return arr.reduce(function(result, value) {
@@ -1036,13 +1036,112 @@ function filter(fn, arr) {
   }, []);
 }</code></pre>
             </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="14757a7b9d8442112c783f4946f0d78a">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 233px; left: 14px; top: 108px;" data-block-id="a0f608069ab99a283c9e6b4f853be456">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>//Classical way
+function diagonalSum(matrix) {
+  var i;
+  var sum = 0;
+  for (i = 0; i &lt; matrix.length; i++) {
+    sum += matrix[i][i];
+  }
+  return sum;
+}
+
+diagonalSum([[1, 2, 3], [4, 5, 6], [7, 8, 9]]); // 1 + 5 + 9 = 15</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 426px; height: 315px; left: 14px; top: 369px;" data-block-id="8df44f211ea363816f54099d6c4ca201">
+            <div class="sl-block-content fragment" style="z-index: 12; font-size: 80%;" data-fragment-index="0">
+                <pre class="javascript"><code>function zipWith(fn, array1, array2) {
+  var result = [];
+  var i = 0;
+  var size = Math.min(array1.length, array2.length);
+  while (i &lt; size) {
+    result.push(fn(array1[i], array2[i]));
+    i++;
+  }
+  return result;
+}
+
+function getArrayValue(arr, index) {
+  return arr[index];
+}
+
+function indexes(arr) {
+  return arr.map(function(value, index) {
+    return index;
+  });
+}</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 488px; height: 315px; left: 461px; top: 369px;" data-block-id="b8f0181bec02194cfd4db877c0ff18cc">
+            <div class="sl-block-content fragment" style="z-index: 14; font-size: 80%;" data-fragment-index="0">
+                <pre class="javascript"><code>function sum(x, y) {
+  return x + y;
+}
+
+function diagonalSum(matrix) {
+  return zipWith(getArrayValue, matrix, indexes(matrix)).
+    reduce(sum);
+}</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="1fc8aa0c55881a330bba2d48aa80a6c4">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 426px; height: 230px; left: 14px; top: 112px;" data-block-id="be96d75b48a305babf5e3e2a214da5ed">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>//Classical way
+function reverse(arr) {
+  var result = [];
+  var i = arr.length - 1;
+  for (; i &gt;= 0; i--) {
+    result.push(arr[i]);
+  }
+  return result;
+}
+
+reverse([1, 2, 3, 4]); //[4, 3, 2, 1]</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 469px; height: 230px; left: 480px; top: 112px;" data-block-id="f2e9f02d91ccc30c266d82b4e0b26f47">
+            <div class="sl-block-content fragment" style="z-index: 12;" data-fragment-index="0">
+                <pre class="javascript"><code>//Using reduce function
+function reverse(arr) {
+  return arr.reduce(function(result, value) {
+    return [value].concat(result);
+  }, []);
+}</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 109px; left: 14px; top: 378px;" data-block-id="acfb824e856a9ae9cab9059cde97cfe0">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="1">
+                <pre class="javascript"><code>//Recursive way
+function reverse(arr) {
+  return arr.length === 0 ? arr : reverse(arr.slice(1)).concat(arr[0]);
+}</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 67px; left: 14px; top: 516px;" data-block-id="d02b584256c8b2e55bdfc7e68ae60898">
+            <div class="sl-block-content fragment" style="z-index: 15;" data-fragment-index="2">
+                <pre class="javascript"><code>//Reverse native function
+[1, 2, 3, 4].reverse();</code></pre>
+            </div>
         </div></section></section>
 			</div>
 		</div>
 
 		
 <script>
-	var SLConfig = {"current_user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"registered":true},"deck":{"id":259175,"slug":"javascript-course","title":"JavaScript Course","description":"","visibility":"all","published_at":"2014-10-23T21:27:06Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/surtich/2a047f/javascript-course.jpg","view_count":6,"user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"registered":true},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sky-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"rtl":false,"version":2,"access_token":"xqGHg8xANUqVAWspWH3Uonq2vsxr","notes":{}}};
+	var SLConfig = {"current_user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"deck":{"id":259175,"slug":"javascript-course","title":"JavaScript Course","description":"","visibility":"all","published_at":"2014-10-23T21:27:06Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/surtich/2a047f/javascript-course.jpg","view_count":6,"user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sky-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"rtl":false,"version":2,"access_token":"xqGHg8xANUqVAWspWH3Uonq2vsxr","notes":{}}};
 </script>
 
 		<script>
