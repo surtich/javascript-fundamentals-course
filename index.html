@@ -114,7 +114,7 @@
 </div></div>
 <div class="sl-block" data-block-type="text" style="width: 410px; left: 49px; top: 18px; height: auto;" data-block-id="f62293941adfe0eb7702793c59a4f6f0"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 13;">
 <h2>history</h2>
-</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 35px; top: 92px; height: auto;" data-block-id="86a5066d0171153a27eb640fde2a1bdc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 35px; top: 138px; height: auto;" data-block-id="86a5066d0171153a27eb640fde2a1bdc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
 <ul>
 	<li class="fragment" data-fragment-index="0">JavaScript is a misunderstood language
 	<ul>
@@ -726,6 +726,315 @@ greet(); //Hi 1 Hi 2 Hi 3 Hi 4 ...
 //i has the correct value -&gt;
 //setTimeout executes the inner function returned by show(msg)
 </code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="7ba0a5853726d94b240354c2a3e3cfaa">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 255px; left: 13px; top: 110px;" data-block-id="291febfa1d0023c983d387d0df9fa8e7">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>function multiply(x, y) {
+  return x * y;
+}
+
+multiply(2, 5); //10
+
+//code reuse
+function double(x) {
+  return multiply(2, x);
+}
+
+double(5); //10</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 255px; left: 13px; top: 402px;" data-block-id="2089e34b6408fcb3bb138aa2070600f6">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0">
+                <pre class="javascript"><code>//another cool way -&gt; Partial application
+var double = multiply.bind(null, 2);
+
+console.log(double(5));</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="b7bf9c3f1895c658fb1a564e93b49f74">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 277px; left: 14px; top: 91px;" data-block-id="8997f0f3a1643302e767ef56b03a9158">
+            <div class="sl-block-content" style="z-index: 12;">
+                <pre class="javascript"><code>//Private static variables
+var count = (function() {
+  var counter = 0;
+  
+  return function() {
+    return ++counter;
+  };
+}());
+
+count(); //1
+count(); //2
+count(); //3</code></pre>
+            </div>
+        </div>
+    </section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="1bcd067f6289bff2d64b425f6f5b3801">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 200px; left: 14px; top: 133px;" data-block-id="89ef854afd745c63d92e3c062441800e">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>function double(x) {
+  return 2 * x;
+}
+
+function addThree(x) {
+  return 3 + x;
+}
+
+double(addThree(5)); //16</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 186px; left: 14px; top: 396px;" data-block-id="48d908c042f69726adb63f0edb2cc8b5">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0">
+                <pre class="javascript"><code>//compose two functions with one argument
+function compose(f, g) {
+  return function(x) {
+    return f(g(x));
+  };
+}
+      
+compose(double, addThree)(5); //16</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="d4033363147f3458318422b9f8372a2e">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 175px; left: 14px; top: 84px;" data-block-id="abcc95bda6655fcf34bd123bd650c5e0">
+            <div class="sl-block-content" style="z-index: 11; font-size: 80%;">
+                <pre class="javascript"><code>function add(x, y) {
+  return x + y;
+}
+
+function multiply(x, y) {
+  return x * y;
+}
+
+//Composite is great but confusing
+multiply(add(multiply(2, 4), 5), 3); //39</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 432px; left: 14px; top: 268px;" data-block-id="519ed356c94b76d101a072eeb71a3583">
+            <div class="sl-block-content fragment" style="z-index: 13; font-size: 80%;" data-fragment-index="0">
+                <pre class="javascript"><code>//chainable functions
+function chain(fns) {
+  var _fns = {};
+  var result;
+  fns.forEach(function(fn) {
+    _fns[fn.name] = function() {
+      var args = Array.prototype.slice.call(arguments);
+      if (result !== undefined) {
+        args = [result].concat(args);
+      }
+      result = fn.apply(null, args);
+      return _fns;
+    };
+  });
+  
+  _fns.value = function() {
+    var _result = result;
+    result = undefined;
+    return _result;
+  };
+  
+  return _fns;
+}
+
+
+var c = chain([add, multiply]);
+
+c.multiply(2, 4).add(5).multiply(3).value(); //39</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="0857b869c8052a482247aa0a2d6d429c">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 438px; left: 14px; top: 109px;" data-block-id="3d9c1605b893e3964e53d9b00ace0f7f">
+            <div class="sl-block-content" style="z-index: 11; font-size: 90%;">
+                <pre class="javascript"><code>//classical way
+function double(arr) {
+  var i;
+  var result = [];
+  for (i= 0; i &lt; arr.length; i++) {
+    result.push(arr[i] * 2);
+  }
+  return result;
+}
+
+double([1, 2, 3, 4]); //[2, 4, 6, 8];
+
+function isEven(arr) {
+  var i;
+  var result = [];
+  for (i= 0; i &lt; arr.length; i++) {
+    result.push(arr[i] % 2 === 0);
+  }
+  return result;
+}
+
+//Bad code reuse -&gt; same structure, different function -&gt; Break the single responsibility principle
+isEven([1, 2, 3, 4]); //[false, true, false, true]</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 458px; left: 14px; top: 99px;" data-block-id="d117eed70687340bc4fd907bfedd3e6e">
+            <div class="sl-block-content fragment" style="z-index: 13; font-size: 90%;" data-fragment-index="0">
+                <pre class="javascript"><code>function double(x) {
+  return 2 * x;
+}
+
+function isEven(x) {
+  return x % 2 === 0;
+}
+
+//creates a new array with the results of calling a provided function on every element in the array
+function map(arr, fn) {
+  var i;
+  var result = [];
+  for (i= 0; i &lt; arr.length; i++) {
+    result.push(fn(arr[i]));
+  }
+  return result;
+}
+
+map([1, 2, 3, 4], double); //[2, 4, 6, 8]
+map([1, 2, 3, 4], isEven); //[false, true, false, true]
+
+//native JavaScript map
+[1, 2, 3, 4].map(isEven); //[false, true, false, true]</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="8307a0e274d70976a9473588e5e9b22d">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 245px; left: 14px; top: 91px;" data-block-id="8aebb5252ec1971934680ec80821b342">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>//Intrusive and no reusable solution
+function sum(arr) {
+  var result = 0;
+  var i;
+  for (i = 0; i &lt; arr.length; i++) {
+    result += arr[i];
+  }
+  return result;
+}
+
+sum([1, 2, 3, 4]); //10</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 351px; left: 14px; top: 342px;" data-block-id="34d174e94312db89f93760ad494630a2">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0">
+                <pre class="javascript"><code>function sum(x, y) {
+  return x + y;
+}
+
+function reduce(arr, fn, initValue){
+  var i = 0;
+  var result = initValue !== undefined ? initValue : arr[i++];
+  
+  for(; i &lt; arr.length; i++){
+     result = fn(result, arr[i]);
+ }  
+  return result;
+}
+
+reduce([1, 2, 3, 4], sum, 0); //10
+
+[1, 2, 3, 4].reduce(sum, 0); //10</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="12b70022281c9a3e361c6bcd3a8f3eac">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 288px; left: 14px; top: 110px;" data-block-id="b7cf4d9f0ecffc3f042f70ad684a62f8">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>//Bad -&gt; intrusive
+function evens(arr) {
+  var i;
+  var result = [];
+  for (i= 0; i &lt; arr.length; i++) {
+    if (arr[i] % 2 === 0) {
+      result.push(arr[i]); 
+    }
+  }
+  return result;
+}
+
+evens([1, 2, 3, 4]); //[2, 4]</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 453px; left: 14px; top: 109px;" data-block-id="db6120f8960d9887660e08f2fa483510">
+            <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0">
+                <pre class="javascript"><code>function isEven(x) {
+  return x % 2 === 0;
+}
+
+function filter(fn, arr) {
+  var i;
+  var result = [];
+  for (i= 0; i &lt; arr.length; i++) {
+    if (fn(arr[i])) {
+      result.push(arr[i]); 
+    }
+  }
+  return result;
+}
+
+filter(isEven, [1, 2, 3, 4]); //[2, 4]
+
+var evens = filter.bind(null, isEven);
+
+evens([1, 2, 3, 4]); //[2, 4]
+
+[1, 2, 3, 4].filter(isEven); //[2, 4]</code></pre>
+            </div>
+        </div></section><section>
+    <div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 10px; height: auto;" data-block-id="3371393e11dd3df6e678d832431f60b9">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
+<h2>FP in practice</h2>
+</div>
+        </div>
+        <div class="sl-block" data-block-type="code" style="width: 935px; height: 233px; left: 14px; top: 108px;" data-block-id="8645f03308b9f0ae09fd6d41f9f016a5">
+            <div class="sl-block-content" style="z-index: 11;">
+                <pre class="javascript"><code>//Why use loops at all?
+function filter(fn, arr) {
+  var result = [];
+  arr.forEach(function(value) {
+    if (fn(value)) {
+      result.push(value); 
+    }
+  });
+  return result;
+}</code></pre>
+            </div>
+        </div>
+    <div class="sl-block" data-block-type="code" style="width: 935px; height: 135px; left: 14px; top: 380px;" data-block-id="337b217d6a8a71415b5d8b42365f9bfe">
+            <div class="sl-block-content fragment current-fragment" style="z-index: 13;" data-fragment-index="0">
+                <pre class="javascript"><code>//forEach does not return a value -&gt; This is not very FP approach
+function filter(fn, arr) {
+  return arr.reduce(function(result, value) {
+    return fn(value) ? result.concat(value) : result;
+  }, []);
+}</code></pre>
             </div>
         </div></section></section>
 			</div>
