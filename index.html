@@ -2627,19 +2627,21 @@ Array.prototype.map.call(persons, function(name) {
 <h2>Array-like objects (ii)</h2>
 </div>
         </div>
-<div class="sl-block" data-block-type="code" style="width: 935px; height: 120px; left: 13px; top: 142px;" data-block-id="f5163de96103ec147cfcf23ae82539f8">
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 155px; left: 13px; top: 138px;" data-block-id="f5163de96103ec147cfcf23ae82539f8">
             <div class="sl-block-content fragment" style="z-index: 10;" data-fragment-index="0">
-                <pre class="javascript"><code>var number = "1234";
+                <pre class="javascript"><code>function add(x, y) {
+  return x + Number(y);
+}
 
-Array.prototype.reduce.call(number, function(ac, char) {
-  return ac + Number(char);
-}, 0); //10</code></pre>
+var number = "1234";
+
+Array.prototype.reduce.call(number, add, 0); //10</code></pre>
             </div>
         </div>
 <div class="sl-block" data-block-type="text" style="width: 912px; left: 13px; top: 91px; height: auto;" data-block-id="ca96a519ab44d23f37df8c59a5286b31"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 80%;" data-has-custom-html="" data-fragment-index="0">
 <p>Strings are array-like objects</p>
 </div></div>
-<div class="sl-block" data-block-type="code" style="width: 935px; height: 198px; left: 12px; top: 339px;" data-block-id="8ed55fec975c1f56d48576cfa339eaa5">
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 198px; left: 12px; top: 374px;" data-block-id="8ed55fec975c1f56d48576cfa339eaa5">
             <div class="sl-block-content fragment" style="z-index: 11;" data-fragment-index="1">
                 <pre class="javascript"><code>function add(x, y) {
   return x + y;
@@ -2652,15 +2654,419 @@ function sum() {
 sum(1, 2, 3, 4); //10</code></pre>
             </div>
         </div>
-<div class="sl-block" data-block-type="text" style="width: 912px; left: 13px; top: 288px; height: auto;" data-block-id="deb811be0d168b48fccc1b56fd389eb9"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: left; font-size: 80%;" data-has-custom-html="" data-fragment-index="1">
+<div class="sl-block" data-block-type="text" style="width: 912px; left: 13px; top: 319px; height: auto;" data-block-id="deb811be0d168b48fccc1b56fd389eb9"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: left; font-size: 80%;" data-has-custom-html="" data-fragment-index="1">
 <p>arguments is an array-like object</p>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 884px; left: 27px; top: 11px; height: auto;" data-block-id="5d12b4bf52b619391493dfa22854071d">
+        <div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+<h2>apply as arguments</h2>
+</div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 127px; left: 13px; top: 138px;" data-block-id="80127a3a07aae632825d1965e7dbb82e">
+            <div class="sl-block-content fragment" style="z-index: 10;" data-fragment-index="0">
+                <pre class="javascript"><code>function min() {
+  return Math.min.apply(null, arguments);
+}
+
+min(1, 2, 3); //1</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="text" style="width: 912px; left: 13px; top: 92px; height: auto;" data-block-id="b1ee03fb78f5bf3868b7c8067c5dd195"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 80%;" data-has-custom-html="" data-fragment-index="0">
+<p>We can use Function.prototype.apply with arguments</p>
+</div></div></section></section><section class="stack"><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 270px; height: auto;" data-block-id="989d7bd3e179b457288aa55480cabb3b"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text">
+<h1>Async JavaScript</h1>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 35px; top: 92px; height: auto;" data-block-id="700b072332e655989e82d9013834ad1d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+<ul>
+	<li class="fragment" data-fragment-index="0">In JavaScript when a slow I/O action is completed, it is added to a queue called Event Loop</li>
+	<li class="fragment" data-fragment-index="1">Advantages:
+	<ul>
+		<li class="fragment" data-fragment-index="0">No time wasted waiting</li>
+		<li class="fragment" data-fragment-index="0">No race conditions</li>
+		<li class="fragment" data-fragment-index="0">No deadlocks</li>
+		<li class="fragment" data-fragment-index="0">Super easy: No synchronized variables, semaphores, etc</li>
+	</ul>
+	</li>
+	<li class="fragment" data-fragment-index="2">Disadvantages:
+	<ul>
+		<li class="fragment" data-fragment-index="0">JavaScript apps are single threaded: waste CPU</li>
+		<li class="fragment" data-fragment-index="0">No real concurrency</li>
+	</ul>
+	</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 639px; left: 49px; top: 18px; height: auto;" data-block-id="2c36574fed432a0e2763de0ec7edbed9"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11;">
+<h2>Event Loop</h2>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 35px; top: 84px; height: auto;" data-block-id="757f3380c669684bdf439ff8e836d902"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+	In JavaScript there are different ways to perform pseudo-concurrency:
+    <br>
+	<ul>
+		<li class="fragment" data-fragment-index="0">Callbacks</li>
+		<li class="fragment" data-fragment-index="1">Events</li>
+		<li class="fragment" data-fragment-index="2">Promises</li>
+		<li class="fragment" data-fragment-index="3">Generators</li>
+	</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 897px; left: 49px; top: 18px; height: auto;" data-block-id="983156eb6c914d152df7df837e165747"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; font-size: 89%;">
+<h2>Async programming in JavaScript</h2>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="addd1cccc19628a55723b5320a109654"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="">
+<p>Callbacks are useful to notify the caller the completion of the asynchronous operation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="e1f044e847a20a8d5359b541d03ccb0a"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Callbacks</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 334px; left: 10px; top: 189px;" data-block-id="2ddd4a7923ccee13b451ff3d2c1db940">
+            <div class="sl-block-content" style="z-index: 13;">
+                <pre class="javascript"><code>setTimeout(function() {
+  console.log('Done!');
+}, 1000);
+
+
+fs.readFile('/etc/passwd', function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});
+
+
+$.ajax(url, {
+  success: function(...) { ... },
+  error: function(...) { ... }
+});</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 7px; height: auto;" data-block-id="86fd3ce7ddb828059d60f3a040000e6f"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Callbacks (ii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 33px; top: 77px; height: auto;" data-block-id="a3eae28b1e6c1ec7857cf62cefc17121"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11; font-size: 98%;" data-has-custom-html="" data-fragment-index="0">
+<p>Callbacks are easy but they have some drawbacks:</p>
+
+<ul>
+	<li class="visible"><a href="http://callbackhell.com/" target="_blank">Callback hell</a></li>
+	<li class="visible">Callback functions can not return a value (passing style)</li>
+	<li class="visible">Errors get lost easily</li>
+	<li class="visible">Doing sequences in parallel is hard</li>
+	<li class="visible">Difficult to debug</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 35px; top: 319px; height: auto;" data-block-id="487f9323548d5d0359fc05d1e46e2911"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="" data-fragment-index="1">
+<p>One solution: <a href="https://github.com/caolan/async" target="_blank">Async.js</a></p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 852px; height: 320px; left: 28px; top: 368px;" data-block-id="73c9ca51ec0845dd32a0af7913535e62">
+            <div class="sl-block-content fragment" style="z-index: 14; font-size: 93%;" data-fragment-index="1">
+                <pre class="javascript"><code>async.map(['file1','file2','file3'], fs.stat, function(err, results){
+    // results is now an array of stats for each file
+});
+
+async.filter(['file1','file2','file3'], fs.exists, function(results){
+    // results now equals an array of the existing files
+});
+
+async.parallel([
+    function(){ ... },
+    function(){ ... }
+], callback);
+
+async.series([
+    function(){ ... },
+    function(){ ... }
+]);</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="4a2ebfff40fadbe48582de4a867b08a5"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="" data-fragment-index="0">
+<p>Promises seem synchronous code</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="52dfee402486bf9142a161c1e32146f6"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Promises</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 124px; left: 10px; top: 134px;" data-block-id="23db9abc3a27d776ff458520a5a3a556">
+            <div class="sl-block-content fragment" style="z-index: 12;" data-fragment-index="0">
+                <pre class="javascript"><code>checkUser(credentials).then(loginSuccess, loginError).then(gotoMainPage);
+
+$.ajax(url).done(function() {...}).fail(function() {...});</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 286px; height: auto;" data-block-id="1a0733541d4add69f96fb669ca675459"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 14;" data-has-custom-html="" data-fragment-index="1">
+<p><a href="https://github.com/kriskowal/q" target="_blank">Q</a>: a promises implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 241px; left: 10px; top: 334px;" data-block-id="39fb343d070189eb6eaadc05384d63b5">
+            <div class="sl-block-content fragment" style="z-index: 15;" data-fragment-index="1">
+                <pre class="javascript"><code>Q.fcall(promisedStep1)
+.then(promisedStep2)
+.then(promisedStep3)
+.then(promisedStep4)
+.then(function (value4) {
+    // Do something with value4
+})
+.catch(function (error) {
+    // Handle any error from all above steps
+})
+.done();</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="568022e1a58a2c1230075729dfa771b7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="">
+<p>Example of naive promise implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="e23d4734e76a01ae9296227d8c2bf904"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Promises (ii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 532px; left: 10px; top: 139px;" data-block-id="2a6ae42af5295c3e40b08489e8ce8b14">
+            <div class="sl-block-content" style="z-index: 12; font-size: 81%;">
+                <pre class="javascript"><code>Promise.prototype.done = function (onSuccess) {
+    this._dones.push(onSuccess);
+    return this;
+};
+
+Promise.prototype.error = function (onError) {
+    this._errors.push(onError);
+    return this;
+};
+
+Promise.prototype.resolve = function (result) {
+    this._complete('resolve', result);
+};
+ 
+Promise.prototype.reject = function (error) {
+    this._complete('reject', error);
+};
+
+Promise.prototype._complete = function (action, arg) {
+    // disallow multiple calls to resolve or reject
+    this.resolve = this.reject = function () {
+        throw new Error('Promise already completed.');
+    };
+    
+    var functions = action === 'resolve' ? this._dones : this._errors;
+    
+    for (var i = 0; i &lt; functions.length; i++) {
+        functions[i](arg);
+    }
+    
+    this._dones = [];
+    this._errors = [];
+};</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="3fe9e7445764dfd391d7f9ed6fea3d06"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="">
+<p>Example of use naive promise implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="e6aeca6d2909325c1b05b2705c684ef2"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Promises (iii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 470px; height: 532px; left: 10px; top: 140px;" data-block-id="34f5b823f3f770eb90c8003911c598ea">
+            <div class="sl-block-content" style="z-index: 12; font-size: 92%;">
+                <pre class="javascript"><code>function doWork(time, callback) {
+    if (typeof time !== 'number' || time &lt;= 0) {
+        setTimeout(function() {            
+            callback('Bad format', null);
+        }, 200); //Simulates a failure
+    } else {
+        setTimeout(function() {
+            callback(null, 'Done!');
+        }, time); //Simulates a long work
+    }
+}
+
+function work(time) {
+    var promise = new Promise();
+    doWork(time, function(error, result) {
+        if(error) {
+            promise.reject(error);
+        } else {
+            promise.resolve(result);
+        }
+    });
+    return promise;
+}</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="code" style="width: 463px; height: 532px; left: 497px; top: 140px;" data-block-id="be03407e82540398faa2ba0c132f802a">
+            <div class="sl-block-content" style="z-index: 14; font-size: 92%;">
+                <pre class="javascript"><code>work(2000).done(function(result) {
+    console.log(result);
+}).done(function(error) {
+    console.log(error);
+});
+
+work(4000).done(function(result) {
+    console.log(result);
+}).done(function(result) {
+    console.log("In second success handler");
+}).error(function(error) {
+    console.log(error);
+});
+
+work(-2000).done(function(result) {
+    console.log(result);
+}).error(function(e) {
+    console.log("In first error handler");
+}).error(function(e) {
+    console.log(e);
+});</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="be692877ef14c274fbea9fa0d6890dc3"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; font-size: 93%;">
+<h2>Promises (iv)</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 33px; top: 99px; height: auto;" data-block-id="f140e5577e1b7f4735fc92fd87675ffd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+<p>Why promises are so cool?</p>
+
+<ul>
+	<li class="visible">Fluent/Functional style</li>
+	<li class="visible">Easy aggregation/composition</li>
+	<li class="visible">Style-error bubbling</li>
+</ul>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="1589ee683cdaef2934c7b6e7efe5ee86"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+<p>Events are great when there are multiple receivers (listeners) interested  on the response:</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="29a9c5c5f90d5314d56bf732bad9cb03"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; font-size: 93%;">
+<h2>Events</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 418px; left: 10px; top: 189px;" data-block-id="7255c3e890b49f5fd7beae11618e9404">
+            <div class="sl-block-content" style="z-index: 13;">
+                <pre class="javascript"><code>document.addEventListener('click', function(event) {....});
+
+
+$('#table').on( "click", function() {
+  ...
+});
+
+
+var server = http.createServer(function (req, res) {
+  ...
+  req.on('data', function (chunk) {
+    ...
+  });
+
+  req.on('end', function () {
+    ...
+  });
+  ...
+});
+</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="67ff0d3bdc514da0a6fd0e2169e37ab3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+<p>Example of naive events implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="c3e4da68868562fef2b040419e8dd397"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; font-size: 93%;">
+<h2>Events (ii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 342px; left: 10px; top: 139px;" data-block-id="28eb65721ee04ce82344d8059873f19a">
+            <div class="sl-block-content" style="z-index: 13;">
+                <pre class="javascript"><code>function EventEmitter() {
+    var events = {};
+    this.addListener = function (event, listener) {
+        if (!events[event]) {
+            events[event] = [];
+        }
+        events[event].push(listener);
+    };
+    this.emitEvent = function (event) {
+        if (events[event]) {
+            for (var i = 0; i &lt; events[event].length; i++) {
+                events[event][i](event);
+            }
+        }
+    };
+}</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="ea86e6d7ee88bd776f8ce5897dbe5ec7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 12;" data-has-custom-html="">
+<p>Example of use naive events implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="8e340cb68548fc244c5cf20d441aa5bc"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 11; font-size: 93%;">
+<h2>Events (iii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 342px; left: 10px; top: 139px;" data-block-id="568ab462ec45006e1136701647e20ded">
+            <div class="sl-block-content" style="z-index: 13;">
+                <pre class="javascript"><code>var ee = new EventEmitter();
+
+function listener1(event) {
+    console.log('The ' + event + ' event has been recived by listener1.');
+}
+
+function listener2(event) {
+    console.log('The ' + event + ' event has been recived by listener2.');
+}
+
+ee.addListener('foo', listener1); //Receiver
+ee.addListener('foo', listener2); //Receiver
+ee.addListener('bar', listener1); //Receiver
+ee.emitEvent('foo'); //Emitter
+ee.emitEvent('bar'); //Emitter</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="ea9c7ccfaf52d356a013eeb567c1ee60"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Events (iv)</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 23px; top: 98px; height: auto;" data-block-id="0e449f3afe7e392a64bf6482d22ca302"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="" data-fragment-index="0">
+<p>Benefits of using events</p>
+<ul>
+<li class="visible">Multiple receivers</li>
+<li class="visible">Easy add/remove listeners</li>
+<li class="visible">Decoupling between emitter and receiver</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 23px; top: 295px; height: auto;" data-block-id="2f3cb85ba54c320f0caa485e39e71b7e"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 13;" data-has-custom-html="" data-fragment-index="1">
+<p>Cons of using events</p>
+
+<ul>
+	<li class="visible">Difficult to debug/test</li>
+	<li class="visible">Easy to lost control: chain of events</li>
+	<li class="visible">Difficult to handle race conditions</li>
+</ul>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 86px; height: auto;" data-block-id="f84f9ae1d51647e53bae59bd4033e01e"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="" data-fragment-index="0">
+<p>New player in ECMAScript 6</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="fef635b4df5d894acf1f09188bf1625e"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Generators</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 257px; left: 21px; top: 140px;" data-block-id="507f8028016150c95911e3f16472e534">
+            <div class="sl-block-content fragment" style="z-index: 12;" data-fragment-index="0">
+                <pre class="javascript"><code>function* foo(x) {
+    yield x + 1;
+
+    var y = yield null;
+    return x + y;
+}
+
+var gen = foo(5);
+gen.next(); // { value: 6, done: false }
+gen.next(); // { value: null, done: false }
+gen.send(8); // { value: 13, done: true }</code></pre>
+            </div>
+        </div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 34px; top: 407px; height: auto;" data-block-id="9547c17edcaecc00c04f172040a4af2b"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 13;" data-has-custom-html="" data-fragment-index="1">
+<p><a href="https://github.com/tj/co" target="_blank">Co</a>: a generators implementation</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 935px; height: 189px; left: 10px; top: 455px;" data-block-id="4c3065a10b1a23664f2db0e0e798a2a2">
+            <div class="sl-block-content fragment" style="z-index: 15;" data-fragment-index="1">
+                <pre class="javascript"><code>co(function *(){
+  try {
+    var res = yield get('http://badhost.invalid');
+    console.log(res);
+  } catch(e) {
+    console.log(e.code) // ENOTFOUND
+ }
+})()</code></pre>
+            </div>
+        </div></section><section><div class="sl-block" data-block-type="text" style="width: 878px; left: 49px; top: 18px; height: auto;" data-block-id="f4fbf8eff8a2340ec673da7f3eb41e8c"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="text-align: left; z-index: 10; font-size: 93%;">
+<h2>Generators (ii)</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 23px; top: 98px; height: auto;" data-block-id="60c204971a23764ea528727c2266240f"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 11;" data-has-custom-html="" data-fragment-index="0">
+<p>Pros</p>
+
+<ul>
+	<li class="visible">Seem synchronous code</li>
+	<li class="visible">Simplified lazy evaluation</li>
+	<li class="visible">Allow infinite sequences</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 911px; left: 23px; top: 295px; height: auto;" data-block-id="a219f2dfda170b88aa0cd2fd1781bcb0"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin urna odio, aliquam vulputate faucibus id, elementum lobortis felis. Mauris urna dolor, placerat ac sagittis quis." style="text-align: left; z-index: 13;" data-has-custom-html="" data-fragment-index="1">
+<p>Cons</p>
+
+<ul>
+	<li class="visible">Immature technology</li>
+	<li class="visible">Awful performance</li>
+	<li class="visible">Are they really neccesary?</li>
+</ul>
 </div></div></section></section>
 			</div>
 		</div>
 
 		
 <script>
-	var SLConfig = {"current_user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"deck":{"id":259175,"slug":"javascript-course","title":"JavaScript Course","description":"","visibility":"all","published_at":"2014-10-23T21:27:06Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/surtich/2a047f/javascript-course.jpg","view_count":9,"user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sky-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"rtl":false,"version":2,"access_token":"xqGHg8xANUqVAWspWH3Uonq2vsxr","notes":{}}};
+	var SLConfig = {"current_user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"deck":{"id":259175,"slug":"javascript-course","title":"JavaScript Course","description":"","visibility":"all","published_at":"2014-10-23T21:27:06Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/surtich/2a047f/javascript-course.jpg","view_count":11,"user":{"id":98013,"username":"surtich","name":"Javier P\u00e9rez","email":"surtich@gmail.com","description":"","thumbnail_url":"https://lh3.googleusercontent.com/-lOGP1UwIz_U/AAAAAAAAAAI/AAAAAAAADOY/bXa7oCXtgKk/photo.jpg","pro":false,"enterprise":false,"enterprise_manager":false,"notify_on_receipt":false,"billing_address":null,"editor_tutorial_completed":true,"settings":{"id":318,"present_controls":true,"present_upsizing":true},"registered":true},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"sky-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"rtl":false,"version":2,"access_token":"xqGHg8xANUqVAWspWH3Uonq2vsxr","notes":{}}};
 </script>
 
 		<script>
