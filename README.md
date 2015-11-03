@@ -1,1 +1,1 @@
-Goto [slides](http://igzjavierperez.github.io/javascript-fundamentals-course/) presentation.
+Goto [slides](http://surtich.github.io/javascript-fundamentals-course/) presentation.
